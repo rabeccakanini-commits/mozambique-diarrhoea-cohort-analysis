@@ -1,0 +1,1141 @@
+---
+title: "Association Between Water Source and Diarrhoea Incidence in a Mozambican District: A Cohort Study Analysis"
+subtitle: "Introduction to Data Analysis – Group 10 Project Report"
+author: "SANDRA ANABA, RABECCA KANINI KATING'U, FAIDA CLEMENCE NIYONSHIMIYE"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    number-sections: true
+    theme: cosmo
+    embed-resources: true
+    self-contained-math: true
+  pdf:
+    toc: false
+    number-sections: true
+
+abstract: |
+  Diarrhoeal disease still remains a major public health challenge in low- and middle-income countries and is strongly linked to unsafe drinking water. Understanding how household water source influences diarrhoeal risk and incidence is essential for guiding effective interventions.
+
+  A prospective cohort study was conducted among 1,200 residents of Mozambican district followed for 12 months. Household water source (tap or well) was assessed at baseline and participants were monitored for diarrhoeal episodes. Person-time at risk was calculated, incidence proportions, incidence rates, risk ratios (RR), incidence rate ratios (IRR), and chi-squared tests were used to assess associations between water source and diarrhoeal outcomes.
+
+  During the follow-up period, 344 participants (28.9%) experienced at least one episode of diarrhoea, with 587 episodes recorded over 1,160.46 person-years. The overall incidence rate was 506 episodes per 1,000 person-years. Participants using well water had a substantially higher risk of diarrhoea compared with tap water users (RR = 2.96; 95% CI: 2.40–3.65) and a higher incidence rate of diarrhoeal episodes (IRR = 2.74; 95% CI: 2.29–3.28). These associations were statistically significant (p < 0.001).
+
+  The consistency of findings across descriptive, incidence-based, and inferential analyses provides robust evidence that unsafe drinking water contributes substantially to the burden of diarrhoeal disease. These results underscore the public health importance of improving access to safe water and implementing targeted water quality interventions in communities reliant on well water to reduce diarrhoeal morbidity.
+  
+---
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+
+
+data <- readRDS("/cloud/project/data/data.rds")
+```
+
+
+# Introduction
+
+Diarrhoeal diseases remain a major global public health challenge and continue to contribute substantially to morbidity and mortality, particularly in low- and middle-income countries. Globally, diarrhoea ranks among the leading causes of death in children aged 1–59 months and is responsible for approximately 443,000 deaths annually, primarily due to dehydration and complications arising from repeated infections [WHO,2024]. The burden of diarrhoeal disease is strongly associated with inadequate access to safe drinking water, sanitation, and hygiene.
+
+Although diarrhoeal disease is often considered a childhood illness, recent evidence highlights a growing burden among older adults. Data from the Global Burden of Disease Study 2021 indicate that diarrhoeal incidence among individuals aged 65 years and above increased by nearly 200% between 1990 and 2021, reaching approximately 381 million cases globally [Zhao et al. (2025)]. This rise has been attributed to population ageing, increased vulnerability to dehydration, and continued exposure to unsafe water sources.
+
+Transmission of diarrhoeal pathogens, including *Escherichia coli*, *Shigella*, and rotavirus, occurs primarily through the faecal–oral route as a result of contaminated water and inadequate sanitation. In low-resource settings, children under three years of age experience an average of three diarrhoeal episodes per year, contributing to malnutrition and impaired growth [WHO,2024]. Older adults also face increased disease severity due to comorbidities and reduced physiological resilience.
+
+Despite global efforts to improve water and sanitation, unsafe water sources remain a major driver of diarrhoeal disease. Understanding how water source influences both the risk and frequency of diarrhoeal episodes is therefore essential for guiding effective public health interventions. Cohort studies provide an appropriate framework for estimating disease incidence and assessing temporal relationships between exposure and disease.
+
+## Study Objectives
+
+The primary objective of this study was to estimate the incidence of diarrhoea and evaluate its association with household water source over a 12-month follow-up period.
+
+The secondary objectives were to:
+
+- Estimate the incidence rate of diarrhoeal episodes using person-time at risk  
+- Compare diarrhoeal incidence between exposure groups  
+- Assess crude associations between water source and diarrhoeal outcomes  
+- Examine the influence of demographic and socio-economic factors  
+
+## Hypothesis 
+
+H_0 : There is no association between water source and diarrhoea incidence in Mozambican District.
+
+H_1 : There is  association between water source and diarrhoea incidence in Mozambican District.
+
+---
+
+# Methodology
+
+## Study Design and Population
+
+The study employed a prospective cohort design, in which a defined group of residents was followed over time to assess the association of diarrhoea incidence in relation to household water source in Mozambican District located in Mozambique. Exposure status (water sources) was determined at baseline, and participants were subsequently observed to estimate diarrhoea incidence.
+
+The initial cohort included 1,200 individuals followed for 12 months. Baseline data were collected on primary water source (tap or well), as well as age, sex, household size, sanitation access,education head and socio-economic status. Following data cleaning, 10 participants with inconsistent observations were excluded, resulting in a final sample size of 1,190 individuals.
+
+Participants were monitored longitudinally for diarrhoeal episodes, with the possibility of experiencing multiple episodes during follow-up. Follow-up time was recorded in days, and loss to follow-up was documented to evaluate potential selection bias.
+
+## Statistical Methods
+
+### Exploratory Data Analysis
+
+Exploratory data analysis involved data cleaning, validation, and descriptive summarization to ensure consistency with the study code book. Variable structures was inspected and categorical variables were redefined according to the documented variables code, range checks was conducted for continuous variables. Ten participants with inconsistent follow-up times were excluded, resulting in a final sample size  1,190 individuals.
+
+Baseline characteristics like sex,age,sanitation,household size,education head and socio-economic status were summarized using tables stratified by household water source to assess balance between exposure groups. Bar plots was used to examine the proportional in exposure(water source), while histograms were used to assess the distribution of continuous variables such as age and household size.
+
+Bivariate exploratory analysis was conducted to explore associations between baseline characteristics and water source. Categorical variables were compared using chi-squared tests and summarized as proportions while 
+continuous variables such as age and household size were summarized using medians and compared between exposure groups using Wilcoxon rank-sum tests due to non-normal distributions. Corresponding p-values was reported to identify potential baseline in-balances and to inform assessment of confounding in subsequent analysis.
+
+### Confirmatory Analysis
+
+#### Incidence Estimation
+
+Incidence proportion estimate the risk of developing at least one episode of diarrhoea  during follow-up period.Binary outcome variable classified participants as cases(1) if they experienced one or more episodes and zero otherwise.
+
+The overall incidence proportion was calculated as:
+
+$$
+\text{Incidence Proportion}
+=
+\frac{\text{Number of participants with } \geq 1 \text{ episode}}
+{\text{Total number of participants}}
+$$
+
+Exact 95\% confidence intervals was calculated using binomial distribution since outcome was 0 and 1. Incidence proportions and its corresponding confidence intervals were also estimated separately for participants using tap water and well water.
+
+---
+
+### Incidence Rate
+
+Incidence measures the frequency of diarrhoeal episodes relative to the total person time at risk. The numerator was defined as the total number of diarrhoeal episodes observed during follow-up:
+
+$$
+\text{Total Episodes} = \sum \text{num\_episodes}
+$$
+
+Person-time at risk calculated for each participant as:
+
+$$
+\text{Person-time (days)}
+=
+\text{Follow-up time}
+-
+(\text{Number of episodes} \times 3)
+$$
+
+Person-time was then converted from days to years:
+
+$$
+\text{Person-time (years)}
+=
+\frac{\text{Person-time (days)}}{365.25}
+$$
+
+Total person-time at risk was obtained by summing individual contributions across all participants.
+
+The overall incidence rate is calculated as:
+
+$$
+\text{Incidence Rate}
+=
+\frac{\text{Total number of episodes}}
+{\text{Total person-time at risk (years)}}
+$$
+
+Rates were expressed per 1,000 person-years. 95\% confidence intervals were calculated assuming a Poisson distribution.
+
+Incidence rates were also calculated separately for participants using well water and tap water and crude incidence rate ratio (IRR) was estimated as:
+
+$$
+\text{IRR}
+=
+\frac{\text{Incidence rate}_{\text{Well}}}
+{\text{Incidence rate}_{\text{Tap}}}
+$$
+
+The 95\% confidence interval for the IRR was calculated using a Poisson approximation based on the number of observed episodes in each exposure group.
+
+#### Association Analysis
+
+-The Risk Ratio (RR) for diarrhoea was calculated based on incidence proportions for the Well and Tap water groups. The RR of X (95% CI: Y–Z) indicates that individuals in the Well water group are X times more likely to experience at least one episode of diarrhoea compared to the Tap water group. While,
+
+-The incidence Rate Ratio (IRR) comparing the Well to the Tap group was X (95% CI: Y–Z), indicating that the Well water group has X times the incidence rate of diarrhoea episodes relative to the Tap group. 
+
+-Chi-squared test was performed using 5% significance level to statistically assess the association between water source and diarrhoea episode.
+
+- **Software:**
+  All analysis were conducted using R version 4.5.2 in RStudio.Some packages used include tableone, epiR,   dplyr etc.
+---
+
+# Results
+
+## Baseline Characteristics
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE,fig.cap="Distribution of Key Variables by Water Source", label="fig-bar"}
+library(ggplot2)
+library(patchwork)
+
+
+p1 <- ggplot(data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Age Distribution", x = "Age", y = "Frequency") +
+  theme_minimal()
+
+p2 <- ggplot(data, aes(x = household_size)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black", alpha = 0.7) +
+  labs(title = "Household Size ", x = "Household Size", y = "Frequency") +
+  theme_minimal()
+
+p3 <- ggplot(data, aes(x = water_source, fill = water_source)) +
+  geom_bar() +
+  labs(
+    title = "Water Source Distribution", 
+    x = "Water Source", 
+    y = "Count",
+    fill = "Water Source" # <--- Rename the legend title here
+  ) +
+  theme_minimal()
+
+
+p1 + p2 + p3
+```
+
+In figure 1,the age distribution, illustrated by an histogram, exhibits a right-skewed pattern with a higher frequency of younger participants, indicating that the study population is predominantly composed of younger individuals. Similarly, the household size distribution, also presented as an histogram, is skewed towards medium-sized households, with the majority of participants residing in households containing 3 to 7 members.
+Lastly, the water source distribution shown in the bar plot, indicating that the majority of participants rely on tap water while a smaller proportion use well water.
+
+
+
+
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+# label: tbl-baseline
+# tbl-cap: "Baseline Characteristics"
+
+library(tableone)
+library(knitr)
+
+vars <- c("age", "sex", "sanitation", "household_size", "socioeconomic_status", "education_head")
+
+tab1 <- CreateTableOne(vars = vars, strata = "water_source", data = data)
+
+kable(
+  print(tab1, 
+        nonnormal = c("age","household_size"), 
+        test = TRUE, 
+        quote = FALSE, 
+        showAllLevels = TRUE, 
+        noSpaces = TRUE, 
+        printToggle = FALSE), 
+  caption = "Table 1: Baseline characteristics stratified by water_source"
+)
+```
+
+
+
+
+
+
+
+
+
+
+
+#### interpretation
+Table 1, summaries the baseline demographic and socio-economic characteristics of study participants stratified by water source (tap vs. well).
+
+- **Age**: 
+-The median age value is 31.00 years with (IQR: 14.00, 50.00) for the Tap group and 28.00 years (IQR: 13.00, 48.00) for the Well group.A probability value of 0.127 indicate significant difference between groups.
+
+- **Sex**:
+ In the Tap group, 48.1% of participants were male, compared to 49.5% in the Well group. Similarly, 51.9% of participants in the Tap group were female, compared to 50.5% in the Well group. These differences were statistically insignificant, with a p-value of 0.667, which is greater than the 0.05 threshold for significance.
+ 
+- **Sanitation**:
+ 91.4% of participants in the Tap group had improved sanitation compared to 86.5% in the Well group.This implies a significant difference observed p-value less than 0.009.
+
+- **Household Size**:
+The median household size was 5.00 for both groups (IQR: 3.00, 7.00 for Tap; IQR: 4.00, 7.00 for Well).
+This suggest an insignificant difference between groups with p-value of 0.165 which is greater than 0.05.
+
+- **Socioeconomic Status**:
+ A significant difference was observed, with the Well group having a higher proportion of participants with low socioeconomic status p < 0.001, Chi-square test).
+
+- **Education Level**:
+ Shows insignificant difference in education level between the groups with p-value of 0.591 greater than 0.05.
+
+
+
+## Follow-up and Outcome Data
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+#|include: false
+#|label: tbl-baseline
+#|ttbl-cap: "Follow up and outcome summary"
+###NUMBER 1
+
+library(knitr)
+library(kableExtra)
+
+
+###NUMBER 1
+
+# Number of participants with at least one diarrhoea episode
+num_with_diarrhoea <- sum(data$num_episodes > 0, na.rm = TRUE)
+#num_with_diarrhoea
+
+
+###NUMBER 2
+# Total number of diarrhoea episodes
+total_diarrhoea_episodes <- sum(data$num_episodes, na.rm = TRUE)
+#total_diarrhoea_episodes
+
+###NUMBER 3
+
+# Calculate person-time at risk (days)
+person_time_days <- data$follow_up_time - (data$num_episodes * 3)
+
+# Ensure no negative person-time
+person_time_days[person_time_days < 0] <- 0
+
+# Convert to person-years
+person_time_at_risk_years <- person_time_days / 365.25
+
+# Total person-time at risk
+total_person_time_year <- sum(person_time_at_risk_years, na.rm = TRUE)
+#total_person_time_year
+
+##NUMBER 4
+
+# Overall lost to follow-up
+#table(data$lost_to_follow_up)
+#prop.table(table(data$lost_to_follow_up))
+
+# Stratified by water source
+#table(data$lost_to_follow_up, data$water_source)
+#prop.table(table(data$lost_to_follow_up, data$water_source), margin = 2)
+
+
+
+#Total participants
+n_total <- nrow(data)
+n_tap   <- sum(data$water_source == "Tap", na.rm = TRUE)
+n_well  <- sum(data$water_source == "Well", na.rm = TRUE)
+
+# Participants with ≥1 episode
+epi_any <- data$num_episodes > 0
+
+epi_overall <- sum(epi_any, na.rm = TRUE)
+epi_tap     <- sum(epi_any & data$water_source == "Tap", na.rm = TRUE)
+epi_well    <- sum(epi_any & data$water_source == "Well", na.rm = TRUE)
+
+# Total diarrhoea episodes
+episodes_overall <- sum(data$num_episodes, na.rm = TRUE)
+episodes_tap     <- sum(data$num_episodes[data$water_source == "Tap"], na.rm = TRUE)
+episodes_well    <- sum(data$num_episodes[data$water_source == "Well"], na.rm = TRUE)
+
+# Person-time at risk (already computed earlier)
+pt_overall <- sum(person_time_at_risk_years, na.rm = TRUE)
+pt_tap     <- sum(person_time_at_risk_years[data$water_source == "Tap"], na.rm = TRUE)
+pt_well    <- sum(person_time_at_risk_years[data$water_source == "Well"], na.rm = TRUE)
+
+# Lost to follow-up (robust detection)
+lost_label <- levels(as.factor(data$lost_to_follow_up))[
+  levels(as.factor(data$lost_to_follow_up)) %in% c("Yes", "TRUE", "Lost", "1")
+]
+
+ltfu_overall <- sum(data$lost_to_follow_up == lost_label, na.rm = TRUE)
+ltfu_tap     <- sum(data$lost_to_follow_up == lost_label & data$water_source == "Tap", na.rm = TRUE)
+ltfu_well    <- sum(data$lost_to_follow_up == lost_label & data$water_source == "Well", na.rm = TRUE)
+
+# Build table
+table2 <- data.frame(
+  Measure = c(
+    "Total participants",
+    "Participants with ≥1 episode, n (%)",
+    "Total diarrhoea episodes",
+    "Person-time at risk (person-years)",
+    "Lost to follow-up, n (%)"
+  ),
+  Overall = c(
+    n_total,
+    paste0(epi_overall, " (", round(epi_overall / n_total * 100, 1), "%)"),
+    episodes_overall,
+    round(pt_overall, 2),
+    paste0(ltfu_overall, " (", round(ltfu_overall / n_total * 100, 1), "%)")
+  ),
+  `Tap Water` = c(
+    n_tap,
+    paste0(epi_tap, " (", round(epi_tap / n_tap * 100, 1), "%)"),
+    episodes_tap,
+    round(pt_tap, 2),
+    paste0(ltfu_tap, " (", round(ltfu_tap / n_tap * 100, 1), "%)")
+  ),
+  `Well Water` = c(
+    n_well,
+    paste0(epi_well, " (", round(epi_well / n_well * 100, 1), "%)"),
+    episodes_well,
+    round(pt_well, 2),
+    paste0(ltfu_well, " (", round(ltfu_well / n_well * 100, 1), "%)")
+  ),
+  stringsAsFactors = FALSE
+)
+
+# Display table
+kable(
+  table2,
+  caption = "Table 2: Follow-up and Outcome Summary",
+  align = "lccc"
+) %>%
+  add_header_above(c(" " = 1, "Water Source" = 3)) %>%
+  kable_styling(full_width = FALSE) 
+
+
+```
+
+
+
+
+As shown in Table 2, during the follow-up period:
+- A total number of 344 participants in the cohort study developed diarrhoea, this value highlights the prevalence of diarrhoea in the population.
+
+- A total number of 587 diarrhoea episodes were observed during the follow-up period,this value implies that some individuals experienced more than one episode of diarrhoea throughout the study.
+
+- The total person-time at risk is 1160.463 person-years, implying combined time all participants were at risk for diarrhoea during the study, excluding the time they were sick. This helps to understand the rate of diarrhoea episodes over time. 
+
+- Out of 1190 individuals, 53 were lost to follow-up, representing 4.44% of the cohort. When stratified by water source, 1.9% of these participants were lost to follow-up in the Tap water group while 7.1% of them were lost in the Well group . This suggests a higher dropout rate in the Well  group compared to the Tap water group.
+
+
+
+
+
+## Incidence of Diarrhoea
+The overall incidence proportion of (0.2891) 28.91% indicates that some participants experienced at least one episode of diarrhoea during the study. A 95% Confidence Interval (CI) suggests that the true incidence proportion in the population is likely to fall within  range of  26.3% to 31.6%.
+
+The overall incidence rate is 506 episodes **per 1,000 person-years (95% CI: 465.73–548.46)**, indicating the frequency or burden of diarrhoea episodes in the cohort. The CI suggests the true incidence rate could range from 465.73 to 548.46 episodes per 1,000 person-years.
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+## 3.2.2 Incidence Rate 
+
+# Person-time at risk (per person)
+data <- data %>%
+  mutate(
+    person_time_years =
+      pmax(follow_up_time - (num_episodes * 3), 0) / 365.25
+  )
+
+# ---- Overall incidence rate ----
+total_episodes <- sum(data$num_episodes, na.rm = TRUE)
+total_pt <- sum(data$person_time_years, na.rm = TRUE)
+
+rate_1000 <- (total_episodes / total_pt) * 1000
+ci_overall <- poisson.test(total_episodes, T = total_pt)$conf.int * 1000
+
+#rate_1000
+#ci_overall
+
+# ---- Stratified by water_source ----
+rate_by_water <- data %>%
+  group_by(water_source) %>%
+  summarise(
+    episodes = sum(num_episodes, na.rm = TRUE),
+    pt_years = sum(person_time_years, na.rm = TRUE),
+    rate_1000 = (episodes / pt_years) * 1000,
+    lower_1000 = poisson.test(episodes, T = pt_years)$conf.int[1] * 1000,
+    upper_1000 = poisson.test(episodes, T = pt_years)$conf.int[2] * 1000,
+    .groups = "drop"
+  )
+
+#rate_by_water
+
+
+
+
+# Step 1: Create diarrhoea_status (DO NOT COMMENT THIS OUT)
+data <- data %>%
+  mutate(diarrhoea_status = ifelse(num_episodes > 0, "Case", "No case"))
+
+
+
+
+# ============================================================================
+# CREATE AGE GROUPS
+# ============================================================================
+
+data$age_group <- cut(data$age,
+                      breaks = c(0, 5, 18, 40, 60, 100),
+                      labels = c("<5", "5-17", "18-39", "40-59", "≥60"),
+                      right = FALSE)
+
+#table(data$age_group)
+
+# ============================================================================
+# INCIDENCE BY AGE GROUP
+# ============================================================================
+
+age_incidence <- data %>%
+  group_by(age_group) %>%
+  summarise(
+    Participants = n(),
+    Cases = sum(diarrhoea_status == "case"),
+    Total_episodes = sum(num_episodes),
+    Person_years = sum(person_time_years),
+    .groups = 'drop'
+  )
+
+age_incidence$Inc_Proportion <- round((age_incidence$Cases / age_incidence$Participants) * 100, 2)
+age_incidence$Inc_Rate_per_1000 <- round((age_incidence$Total_episodes / age_incidence$Person_years) * 1000, 2)
+
+age_incidence$IP_CI <- ""
+age_incidence$IR_CI <- ""
+
+for(i in 1:nrow(age_incidence)) {
+  ci_prop <- binom.test(age_incidence$Cases[i], age_incidence$Participants[i])
+  age_incidence$IP_CI[i] <- paste0("(", round(ci_prop$conf.int[1] * 100, 2),
+                                   ", ", round(ci_prop$conf.int[2] * 100, 2), ")")
+ 
+  ci_rate <- poisson.test(age_incidence$Total_episodes[i], age_incidence$Person_years[i])
+  age_incidence$IR_CI[i] <- paste0("(", round(ci_rate$conf.int[1] * 1000, 2),
+                                   ", ", round(ci_rate$conf.int[2] * 1000, 2), ")")
+}
+
+# Use explicit dplyr::select() or just use the data frame directly
+age_table <- data.frame(
+  Age_Group = age_incidence$age_group,
+  Participants = age_incidence$Participants,
+  Cases = age_incidence$Cases,
+  Episodes = age_incidence$Total_episodes,
+  Person_Years = round(age_incidence$Person_years, 2),
+  IP_Percent = age_incidence$Inc_Proportion,
+  IP_CI = age_incidence$IP_CI,
+  IR_per_1000 = age_incidence$Inc_Rate_per_1000,
+  IR_CI = age_incidence$IR_CI
+)
+
+kable(age_table,
+      col.names = c("Age Group", "Participants", "Cases", "Episodes",
+                    "Person-Years", "IP (%)", "95% CI", "IR (per 1,000 PY)", "95% CI"),
+      caption = "Table 4: Incidence Measures by Age Group",
+      align = c('l', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'),
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  add_header_above(c(" " = 5, "Incidence Proportion" = 2, "Incidence Rate" = 2)) %>%
+  footnote(general = c(),
+           general_title = "Notes:",
+           footnote_as_chunk = TRUE)
+```
+
+
+
+
+
+As seen in Table 4, the age stratified incidence proportion  groups is 0, indicating no participants had multiple episodes within each group. Incidence rate (episodes per 1,000 person-years) was highest in the youngest age group (≤5) despite no recorded cases, which is due to the small sample size.Older age groups (40-59, 60+) had lower incidence rates, suggesting a lower frequency of new episodes of diarrhoea in these age groups.
+
+
+
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+
+#|label: tbl-baseline
+#|ttbl-cap: "Incidence Measures by SocioEconomic Status"
+
+# ============================================================================
+# INCIDENCE BY SOCIOECONOMIC STATUS
+# ============================================================================
+
+ses_incidence <- data %>%
+  group_by(socioeconomic_status) %>%
+  summarise(
+    Participants = n(),
+    Cases = sum(diarrhoea_status == 1),
+    Total_episodes = sum(num_episodes),
+    Person_years = sum(person_time_years),
+    .groups = 'drop'
+  )
+
+ses_incidence$Inc_Proportion <- round((ses_incidence$Cases / ses_incidence$Participants) * 100, 2)
+ses_incidence$Inc_Rate_per_1000 <- round((ses_incidence$Total_episodes / ses_incidence$Person_years) * 1000, 2)
+
+ses_incidence$IP_CI <- ""
+ses_incidence$IR_CI <- ""
+
+for(i in 1:nrow(ses_incidence)) {
+  ci_prop <- binom.test(ses_incidence$Cases[i], ses_incidence$Participants[i])
+  ses_incidence$IP_CI[i] <- paste0("(", round(ci_prop$conf.int[1] * 100, 2),
+                                   ", ", round(ci_prop$conf.int[2] * 100, 2), ")")
+ 
+  ci_rate <- poisson.test(ses_incidence$Total_episodes[i], ses_incidence$Person_years[i])
+  ses_incidence$IR_CI[i] <- paste0("(", round(ci_rate$conf.int[1] * 1000, 2),
+                                   ", ", round(ci_rate$conf.int[2] * 1000, 2), ")")
+}
+
+# Create final table
+ses_table <- data.frame(
+  SES = ses_incidence$socioeconomic_status,
+  Participants = ses_incidence$Participants,
+  Cases = ses_incidence$Cases,
+  Episodes = ses_incidence$Total_episodes,
+  Person_Years = round(ses_incidence$Person_years, 2),
+  IP_Percent = ses_incidence$Inc_Proportion,
+  IP_CI = ses_incidence$IP_CI,
+  IR_per_1000 = ses_incidence$Inc_Rate_per_1000,
+  IR_CI = ses_incidence$IR_CI
+)
+
+kable(ses_table,
+      col.names = c("Socioeconomic Status", "Participants", "Cases", "Episodes",
+                    "Person-Years", "IP (%)", "95% CI", "IR (per 1,000 PY)", "95% CI"),
+      caption = "Table 5: Incidence Measures by Socioeconomic Status",
+      align = c('l', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'),
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  add_header_above(c(" " = 5, "Incidence Proportion" = 2, "Incidence Rate" = 2)) %>%
+  footnote(general = c(),
+           general_title = "Notes:",
+           footnote_as_chunk = TRUE) #-> table3
+```
+
+
+
+The table 5, shows the incidence measures for different socioeconomic statuses. All groups (low, medium, and high) report 0% incidence proportion (no cases). However, the incidence rate (IR) per 1,000 person-years is highest in the low socioeconomic group (702.7), followed by the medium group (440.08), and lowest in the high group (282.61). These rates reflect the occurrence of episodes relative to the person-time at risk in each group.
+
+
+
+
+
+## Association Between Water Source and Diarrhoea
+
+
+```{r echo=FALSE,warning=FALSE,message=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+# --- Incidence proportion + RR ---
+n_by_water <- table(data$water_source)
+cases_by_water <- table(data$water_source[data$diarrhoea_status == "Case"])
+
+risk_well <- as.numeric(cases_by_water["Well"] / n_by_water["Well"])
+risk_tap  <- as.numeric(cases_by_water["Tap"]  / n_by_water["Tap"])
+RR <- risk_well / risk_tap
+
+a  <- as.numeric(cases_by_water["Well"]); n1 <- as.numeric(n_by_water["Well"])
+c  <- as.numeric(cases_by_water["Tap"]);  n0 <- as.numeric(n_by_water["Tap"])
+
+se_log_rr <- sqrt((1/a) - (1/n1) + (1/c) - (1/n0))
+RR_low <- exp(log(RR) - 1.96 * se_log_rr)
+RR_up  <- exp(log(RR) + 1.96 * se_log_rr)
+
+# --- Incidence rate + IRR ---
+rate_data <- data %>%
+  group_by(water_source) %>%
+  summarise(
+    episodes = sum(num_episodes, na.rm = TRUE),
+    py = sum(person_time_years, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+rate_well <- rate_data$episodes[rate_data$water_source=="Well"] / rate_data$py[rate_data$water_source=="Well"]
+rate_tap  <- rate_data$episodes[rate_data$water_source=="Tap"]  / rate_data$py[rate_data$water_source=="Tap"]
+IRR <- rate_well / rate_tap
+
+E_well <- rate_data$episodes[rate_data$water_source=="Well"]
+E_tap  <- rate_data$episodes[rate_data$water_source=="Tap"]
+se_log_irr <- sqrt((1/E_well) + (1/E_tap))
+IRR_low <- exp(log(IRR) - 1.96 * se_log_irr)
+IRR_up  <- exp(log(IRR) + 1.96 * se_log_irr)
+
+# --- Chi-square ---
+chi_table <- table(data$water_source, data$diarrhoea_status)
+chisq_result <- suppressWarnings(chisq.test(chi_table))
+
+# --- Final table (wide but formatted to fit) ---
+tab_out <- tibble::tibble(
+  "Measure" = c("Risk (Well)", "Risk (Tap)", "Risk Ratio (RR)", "RR 95% CI",
+                "Incidence rate (Well) per 1,000 PY", "Incidence rate (Tap) per 1,000 PY",
+                "Incidence Rate Ratio (IRR)", "IRR 95% CI",
+                "Chi-square", "df", "p-value"),
+  "Value" = c(
+    sprintf("%.3f", risk_well),
+    sprintf("%.3f", risk_tap),
+    sprintf("%.2f", RR),
+    sprintf("(%.2f, %.2f)", RR_low, RR_up),
+    sprintf("%.2f", rate_well * 1000),
+    sprintf("%.2f", rate_tap * 1000),
+    sprintf("%.2f", IRR),
+    sprintf("(%.2f, %.2f)", IRR_low, IRR_up),
+    sprintf("%.3f", as.numeric(chisq_result$statistic)),
+    as.integer(chisq_result$parameter),
+    sprintf("%.4f", chisq_result$p.value)
+  )
+)
+
+kable(tab_out, caption = "Incidence measures and association tests by water source", booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, font_size = 7) %>%   # shrink font
+  column_spec(1, width = "5cm") %>%                      # wrap long labels
+  column_spec(2, width = "2cm") %>%
+  scroll_box(width = "100%", height = "400px")           # HTML: prevents overlap (adds scroll)
+
+```
+
+Participants using well water had a substantially higher risk of diarrhoea compared with those using tap water. The risk of experiencing at least one episode of diarrhoea was nearly three times higher among well water users (RR = 2.96, 95% CI: 2.40–3.65), and this association was statistically significant.
+
+Participants who used well water experienced a significantly higher incidence rate of diarrhoea compared with those using tap water. The incidence rate among well water users was 2.74 times that of tap water users (IRR = 2.74; 95% CI: 2.29–3.28), providing strong statistical evidence of an association between water source and diarrhoea disease.
+The p-vaule < 0.001 suggest a strong evidence of an association between household water source and experiencing at least one episode of diarrhoea The p-vaule < 0.001 suggest a strong evidence of an association between household water source and experiencing at least one episode of diarrhoea
+---
+
+# Discussion
+
+The prospective cohort study provides strong evidence that household water source is a key determinant of diarrhoea disease. Participants relying on well water experienced a substantially higher burden of diarrhoea than those using tap water, with nearly a threefold increase in both the risk of disease (RR = 2.96; 95% CI: 2.40–3.65) and the incidence rate of diarrhoea episodes (IRR = 2.74; 95% CI: 2.29–3.28). These associations were consistent across multiple analytic approaches.
+
+Exploratory analysis indicated a right-skewed age distribution, supporting the use of non-parametric methods for baseline comparisons. Baseline characteristics were generally comparable between exposure groups; however, sanitation access and socio-economic status differed significantly by water source base on p-value < 0.009 and p-vaul < 0.001, respectively, suggesting potential confounding and highlighting structural vulnerabilities among households reliant on well water.
+
+During follow-up, 344 of 1,190 participants (28.9%) experienced at least one episode of diarrhoea, with a total of 587 episodes recorded over 1,160.46 person-years of observation. This corresponded to an overall incidence rate of 506 episodes per 1,000 person-years, indicating a substantial and recurrent disease burden. Loss to follow-up was low overall (4.44%), although slightly higher among well water users, and is unlikely to fully explain the observed associations.
+
+The association between water source and diarrhoea disease was strong and statistically significant. Participants using well water had nearly three times the risk of experiencing at least one episode of diarrhoea compared with tap water users (RR = 2.96; 95% CI: 2.40–3.65) and almost three times the incidence rate of diarrhoeal episodes (IRR = 2.74; 95% CI: 2.29–3.28). This was supported by a highly significant chi-squared test (χ² = 121.57, df = 1, p < 0.001), reinforcing that the observed association is unlikely to be due to chance.
+
+Overall, these findings underscore the public health importance of safe drinking water access and suggest that interventions targeting water quality in communities reliant on well water could substantially reduce the burden of diarrhoea disease.
+
+- **Limitations of the Study:**
+- ***Time Constraints:***
+The time frame for the study was relatively short, limiting the ability to explore the relationships between multiple variables in greater depth. A longer follow-up period would have allowed for a more comprehensive analysis and a better understanding of the associations between the variables under investigation.
+
+- **Recommendations of the Study**
+
+---
+
+# Conclusion
+
+The prospective cohort study demonstrates that household water source is a significant determinant of diarrhoeal disease in the Mozambican district. The occurrence and risk of diarrhoeal episodes were significantly higher among users of well water compared with those using tap water. The consistency of findings across descriptive, incidence-based, and inferential analysis provides robust evidence that unsafe drinking water contributes significantly to the burden of diarrhoeal disease. These results underscore the public health importance of improving access to safe water and implementing targeted water quality interventions in communities reliant on well water to reduce diarrhoeal morbidity.
+
+
+
+---
+
+
+
+## References 
+
+
+1. World Health Organization. (2024). Diarrhoeal disease. https://www.who.int/news-room/fact-sheets/detail/diarrhoeal-disease
+Accessed 2026-01-20
+
+2. Zhao, W.-Z. et al. (2025). Global burden of diarrhoeal disease among older adults: Findings from the global burden of disease study 2021. Frontiers in Public Health. https://pmc.ncbi.nlm.nih.gov/articles/PMC12006145/
+
+
+
+
+# Appendix A {.unnumbered}
+
+```{r echo=TRUE,eval=FALSE}
+
+rm(list = ls())
+
+library(dplyr)
+
+data <- read.csv("IDA_GroupProject_Data.csv")
+View(data)
+str(data)
+
+data <- data %>%
+  mutate(
+    enrolment_date = as.Date(enrolment_date, format = "%Y-%m-%d"),
+    sex = factor(sex, levels = c(0, 1), labels = c("Male", "Female")),
+    water_source = factor(water_source, levels = c(0, 1), labels = c("Tap", "Well")),
+    sanitation = factor(sanitation, levels = c(0, 1), labels = c("No", "Yes")),
+    education_head = factor(education_head, levels=c(1,2,3,4), labels = c("none","primary","secondary","tertiary")),
+    socioeconomic_status = factor(socioeconomic_status, levels = c(1, 2, 3), labels = c("Low", "Medium", "High")),
+    lost_to_follow_up = factor(lost_to_follow_up, levels = c(0, 1), labels = c("Completed", "Lost"))
+  )
+str(data)
+
+sum(is.na(data))
+colSums(is.na(data))
+
+data<- subset(
+  data,
+  time_to_first_episode <= follow_up_time | is.na(time_to_first_episode)
+)
+
+library(ggplot2)
+library(patchwork)
+
+
+p1 <- ggplot(data, aes(x = age)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Age Distribution", x = "Age", y = "Frequency") +
+  theme_minimal()
+
+p2 <- ggplot(data, aes(x = household_size)) +
+  geom_histogram(binwidth = 1, fill = "lightblue", color = "black", alpha = 0.7) +
+  labs(title = "Household Size ", x = "Household Size", y = "Frequency") +
+  theme_minimal()
+
+p3 <- ggplot(data, aes(x = water_source, fill = water_source)) +
+  geom_bar() +
+  labs(
+    title = "Water Source Distribution", 
+    x = "Water Source", 
+    y = "Count",
+    fill = "Water Source" 
+  ) +
+  theme_minimal()
+
+
+p1 + p2 + p3
+
+library(tableone)
+library(knitr)
+
+vars <- c("age","sex","sanitation","household_size","socioeconomic_status","education_head")
+
+tab1 <- CreateTableOne(vars = vars, strata = "water_source", data = data)
+
+kable(
+  print(tab1, nonnormal = c("age","household_size"), test = TRUE, quote = FALSE, showAllLevels = TRUE , noSpaces = TRUE),
+  caption = "Table 1: Baseline characteristics stratified by water_source"
+)
+
+library(knitr)
+library(kableExtra)
+
+
+###NUMBER 1
+
+# Number of participants with at least one diarrhoea episode
+num_with_diarrhoea <- sum(data$num_episodes > 0, na.rm = TRUE)
+num_with_diarrhoea
+
+
+###NUMBER 2
+# Total number of diarrhoea episodes
+total_diarrhoea_episodes <- sum(data$num_episodes, na.rm = TRUE)
+total_diarrhoea_episodes
+
+###NUMBER 3
+
+
+person_time_days <- data$follow_up_time - (data$num_episodes * 3)
+
+
+person_time_days[person_time_days < 0] <- 0
+
+person_time_at_risk_years <- person_time_days / 365.25
+
+total_person_time_year <- sum(person_time_at_risk_years, na.rm = TRUE)
+total_person_time_year
+
+##NUMBER 4
+
+
+table(data$lost_to_follow_up)
+prop.table(table(data$lost_to_follow_up))
+
+
+table(data$lost_to_follow_up, data$water_source)
+prop.table(table(data$lost_to_follow_up, data$water_source), margin = 2)
+
+
+n_total <- nrow(data)
+n_tap   <- sum(data$water_source == "Tap", na.rm = TRUE)
+n_well  <- sum(data$water_source == "Well", na.rm = TRUE)
+
+
+epi_any <- data$num_episodes > 0
+
+epi_overall <- sum(epi_any, na.rm = TRUE)
+epi_tap     <- sum(epi_any & data$water_source == "Tap", na.rm = TRUE)
+epi_well    <- sum(epi_any & data$water_source == "Well", na.rm = TRUE)
+
+
+episodes_overall <- sum(data$num_episodes, na.rm = TRUE)
+episodes_tap     <- sum(data$num_episodes[data$water_source == "Tap"], na.rm = TRUE)
+episodes_well    <- sum(data$num_episodes[data$water_source == "Well"], na.rm = TRUE)
+
+pt_overall <- sum(person_time_at_risk_years, na.rm = TRUE)
+pt_tap     <- sum(person_time_at_risk_years[data$water_source == "Tap"], na.rm = TRUE)
+pt_well    <- sum(person_time_at_risk_years[data$water_source == "Well"], na.rm = TRUE)
+
+lost_label <- levels(as.factor(data$lost_to_follow_up))[
+  levels(as.factor(data$lost_to_follow_up)) %in% c("Yes", "TRUE", "Lost", "1")
+]
+
+ltfu_overall <- sum(data$lost_to_follow_up == lost_label, na.rm = TRUE)
+ltfu_tap     <- sum(data$lost_to_follow_up == lost_label & data$water_source == "Tap", na.rm = TRUE)
+ltfu_well    <- sum(data$lost_to_follow_up == lost_label & data$water_source == "Well", na.rm = TRUE)
+
+table2 <- data.frame(
+  Measure = c(
+    "Total participants",
+    "Participants with ≥1 episode, n (%)",
+    "Total diarrhoea episodes",
+    "Person-time at risk (person-years)",
+    "Lost to follow-up, n (%)"
+  ),
+  Overall = c(
+    n_total,
+    paste0(epi_overall, " (", round(epi_overall / n_total * 100, 1), "%)"),
+    episodes_overall,
+    round(pt_overall, 2),
+    paste0(ltfu_overall, " (", round(ltfu_overall / n_total * 100, 1), "%)")
+  ),
+  `Tap Water` = c(
+    n_tap,
+    paste0(epi_tap, " (", round(epi_tap / n_tap * 100, 1), "%)"),
+    episodes_tap,
+    round(pt_tap, 2),
+    paste0(ltfu_tap, " (", round(ltfu_tap / n_tap * 100, 1), "%)")
+  ),
+  `Well Water` = c(
+    n_well,
+    paste0(epi_well, " (", round(epi_well / n_well * 100, 1), "%)"),
+    episodes_well,
+    round(pt_well, 2),
+    paste0(ltfu_well, " (", round(ltfu_well / n_well * 100, 1), "%)")
+  ),
+  stringsAsFactors = FALSE
+)
+
+kable(
+  table2,
+  caption = "Table 2: Follow-up and Outcome Summary",
+  align = "lccc"
+) %>%
+  add_header_above(c(" " = 1, "Water Source" = 3)) %>%
+  kable_styling(full_width = FALSE) 
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+## 3.2.2 Incidence Rate 
+
+data <- data %>%
+  mutate(
+    person_time_years =
+      pmax(follow_up_time - (num_episodes * 3), 0) / 365.25
+  )
+
+total_episodes <- sum(data$num_episodes, na.rm = TRUE)
+total_pt <- sum(data$person_time_years, na.rm = TRUE)
+
+rate_1000 <- (total_episodes / total_pt) * 1000
+ci_overall <- poisson.test(total_episodes, T = total_pt)$conf.int * 1000
+
+rate_1000
+ci_overall
+
+rate_by_water <- data %>%
+  group_by(water_source) %>%
+  summarise(
+    episodes = sum(num_episodes, na.rm = TRUE),
+    pt_years = sum(person_time_years, na.rm = TRUE),
+    rate_1000 = (episodes / pt_years) * 1000,
+    lower_1000 = poisson.test(episodes, T = pt_years)$conf.int[1] * 1000,
+    upper_1000 = poisson.test(episodes, T = pt_years)$conf.int[2] * 1000,
+    .groups = "drop"
+  )
+
+rate_by_water
+
+
+data <- data %>%
+  mutate(diarrhoea_status = ifelse(num_episodes > 0, "Case", "No case"))
+
+
+
+data$age_group <- cut(data$age,
+                      breaks = c(0, 5, 18, 40, 60, 100),
+                      labels = c("<5", "5-17", "18-39", "40-59", "≥60"),
+                      right = FALSE)
+
+table(data$age_group)
+
+
+age_incidence <- data %>%
+  group_by(age_group) %>%
+  summarise(
+    Participants = n(),
+    Cases = sum(diarrhoea_status == "case"),
+    Total_episodes = sum(num_episodes),
+    Person_years = sum(person_time_years),
+    .groups = 'drop'
+  )
+
+age_incidence$Inc_Proportion <- round((age_incidence$Cases / age_incidence$Participants) * 100, 2)
+age_incidence$Inc_Rate_per_1000 <- round((age_incidence$Total_episodes / age_incidence$Person_years) * 1000, 2)
+
+age_incidence$IP_CI <- ""
+age_incidence$IR_CI <- ""
+
+for(i in 1:nrow(age_incidence)) {
+  ci_prop <- binom.test(age_incidence$Cases[i], age_incidence$Participants[i])
+  age_incidence$IP_CI[i] <- paste0("(", round(ci_prop$conf.int[1] * 100, 2),
+                                   ", ", round(ci_prop$conf.int[2] * 100, 2), ")")
+ 
+  ci_rate <- poisson.test(age_incidence$Total_episodes[i], age_incidence$Person_years[i])
+  age_incidence$IR_CI[i] <- paste0("(", round(ci_rate$conf.int[1] * 1000, 2),
+                                   ", ", round(ci_rate$conf.int[2] * 1000, 2), ")")
+}
+
+age_table <- data.frame(
+  Age_Group = age_incidence$age_group,
+  Participants = age_incidence$Participants,
+  Cases = age_incidence$Cases,
+  Episodes = age_incidence$Total_episodes,
+  Person_Years = round(age_incidence$Person_years, 2),
+  IP_Percent = age_incidence$Inc_Proportion,
+  IP_CI = age_incidence$IP_CI,
+  IR_per_1000 = age_incidence$Inc_Rate_per_1000,
+  IR_CI = age_incidence$IR_CI
+)
+
+kable(age_table,
+      col.names = c("Age Group", "Participants", "Cases", "Episodes",
+                    "Person-Years", "IP (%)", "95% CI", "IR (per 1,000 PY)", "95% CI"),
+      caption = "Table 4: Incidence Measures by Age Group",
+      align = c('l', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'),
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  add_header_above(c(" " = 5, "Incidence Proportion" = 2, "Incidence Rate" = 2)) %>%
+  footnote(general = c(),
+           general_title = "Notes:",
+           footnote_as_chunk = TRUE)
+
+
+ses_incidence <- data %>%
+  group_by(socioeconomic_status) %>%
+  summarise(
+    Participants = n(),
+    Cases = sum(diarrhoea_status == 1),
+    Total_episodes = sum(num_episodes),
+    Person_years = sum(person_time_years),
+    .groups = 'drop'
+  )
+
+ses_incidence$Inc_Proportion <- round((ses_incidence$Cases / ses_incidence$Participants) * 100, 2)
+ses_incidence$Inc_Rate_per_1000 <- round((ses_incidence$Total_episodes / ses_incidence$Person_years) * 1000, 2)
+
+ses_incidence$IP_CI <- ""
+ses_incidence$IR_CI <- ""
+
+for(i in 1:nrow(ses_incidence)) {
+  ci_prop <- binom.test(ses_incidence$Cases[i], ses_incidence$Participants[i])
+  ses_incidence$IP_CI[i] <- paste0("(", round(ci_prop$conf.int[1] * 100, 2),
+                                   ", ", round(ci_prop$conf.int[2] * 100, 2), ")")
+ 
+  ci_rate <- poisson.test(ses_incidence$Total_episodes[i], ses_incidence$Person_years[i])
+  ses_incidence$IR_CI[i] <- paste0("(", round(ci_rate$conf.int[1] * 1000, 2),
+                                   ", ", round(ci_rate$conf.int[2] * 1000, 2), ")")
+}
+
+ses_table <- data.frame(
+  SES = ses_incidence$socioeconomic_status,
+  Participants = ses_incidence$Participants,
+  Cases = ses_incidence$Cases,
+  Episodes = ses_incidence$Total_episodes,
+  Person_Years = round(ses_incidence$Person_years, 2),
+  IP_Percent = ses_incidence$Inc_Proportion,
+  IP_CI = ses_incidence$IP_CI,
+  IR_per_1000 = ses_incidence$Inc_Rate_per_1000,
+  IR_CI = ses_incidence$IR_CI
+)
+
+kable(ses_table,
+      col.names = c("Socioeconomic Status", "Participants", "Cases", "Episodes",
+                    "Person-Years", "IP (%)", "95% CI", "IR (per 1,000 PY)", "95% CI"),
+      caption = "Table 5: Incidence Measures by Socioeconomic Status",
+      align = c('l', 'c', 'c', 'c', 'c', 'c', 'c', 'c', 'c'),
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE) %>%
+  add_header_above(c(" " = 5, "Incidence Proportion" = 2, "Incidence Rate" = 2)) %>%
+  footnote(general = c(),
+           general_title = "Notes:",
+           footnote_as_chunk = TRUE) #-> table3
+
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+n_by_water <- table(data$water_source)
+cases_by_water <- table(data$water_source[data$diarrhoea_status == "Case"])
+
+risk_well <- as.numeric(cases_by_water["Well"] / n_by_water["Well"])
+risk_tap  <- as.numeric(cases_by_water["Tap"]  / n_by_water["Tap"])
+RR <- risk_well / risk_tap
+
+a  <- as.numeric(cases_by_water["Well"]); n1 <- as.numeric(n_by_water["Well"])
+c  <- as.numeric(cases_by_water["Tap"]);  n0 <- as.numeric(n_by_water["Tap"])
+
+se_log_rr <- sqrt((1/a) - (1/n1) + (1/c) - (1/n0))
+RR_low <- exp(log(RR) - 1.96 * se_log_rr)
+RR_up  <- exp(log(RR) + 1.96 * se_log_rr)
+
+rate_data <- data %>%
+  group_by(water_source) %>%
+  summarise(
+    episodes = sum(num_episodes, na.rm = TRUE),
+    py = sum(person_time_years, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+rate_well <- rate_data$episodes[rate_data$water_source=="Well"] / rate_data$py[rate_data$water_source=="Well"]
+rate_tap  <- rate_data$episodes[rate_data$water_source=="Tap"]  / rate_data$py[rate_data$water_source=="Tap"]
+IRR <- rate_well / rate_tap
+
+E_well <- rate_data$episodes[rate_data$water_source=="Well"]
+E_tap  <- rate_data$episodes[rate_data$water_source=="Tap"]
+se_log_irr <- sqrt((1/E_well) + (1/E_tap))
+IRR_low <- exp(log(IRR) - 1.96 * se_log_irr)
+IRR_up  <- exp(log(IRR) + 1.96 * se_log_irr)
+
+chi_table <- table(data$water_source, data$diarrhoea_status)
+chisq_result <- suppressWarnings(chisq.test(chi_table))
+
+tab_out <- tibble::tibble(
+  "Measure" = c("Risk (Well)", "Risk (Tap)", "Risk Ratio (RR)", "RR 95% CI",
+                "Incidence rate (Well) per 1,000 PY", "Incidence rate (Tap) per 1,000 PY",
+                "Incidence Rate Ratio (IRR)", "IRR 95% CI",
+                "Chi-square", "df", "p-value"),
+  "Value" = c(
+    sprintf("%.3f", risk_well),
+    sprintf("%.3f", risk_tap),
+    sprintf("%.2f", RR),
+    sprintf("(%.2f, %.2f)", RR_low, RR_up),
+    sprintf("%.2f", rate_well * 1000),
+    sprintf("%.2f", rate_tap * 1000),
+    sprintf("%.2f", IRR),
+    sprintf("(%.2f, %.2f)", IRR_low, IRR_up),
+    sprintf("%.3f", as.numeric(chisq_result$statistic)),
+    as.integer(chisq_result$parameter),
+    sprintf("%.4f", chisq_result$p.value)
+  )
+)
+
+kable(tab_out, caption = "Incidence measures and association tests by water source", booktabs = TRUE) %>%
+  kable_styling(full_width = FALSE, font_size = 9) %>%  
+  column_spec(1, width = "7cm") %>%                      
+  column_spec(2, width = "4cm") %>%
+  scroll_box(width = "100%", height = "350px")           
+
+
+
+```
+
+
+
+
+
+
+
+
